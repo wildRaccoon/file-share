@@ -21,7 +21,7 @@
     "@types/chai": "^3.4.34",
     "@types/core-js": "^0.9.34",
     "@types/html-webpack-plugin": "^2.22.3",
-    "@types/lodash": "^4.14.40",
+    "@types/lodash": "4.14.50",
     "@types/node": "^6.0.51",
     "@types/webpack": "^2.0.0",
     "@types/webpack-merge": "0.0.3",
