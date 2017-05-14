@@ -1,6 +1,6 @@
 #/bin/sh
-sudo apt-get update
-sudo apt-get dist-upgrade
-sudo apt-get autoclean
-sudo apt-get autoremove
+sudo apt-get update -y
+sudo apt-get dist-upgrade -y
+sudo apt-get autoclean -y
+sudo apt-get autoremove -y
 
