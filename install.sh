@@ -1,5 +1,5 @@
 sudo apt-get install curl -y
-sudo apt-get install chromium-browser -y
+sudo apt-get install chromium-browser mc -y
 
 sudo apt-add-repository -y ppa:teejee2008/ppa
 sudo apt-get update -y
