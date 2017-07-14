@@ -1,5 +1,5 @@
 sudo apt-get install curl -y
-sudo apt-get install google-chrome-stable -y
+sudo apt-get install chromium-browser -y
 
 sudo apt-add-repository -y ppa:teejee2008/ppa
 sudo apt-get update -y
@@ -44,7 +44,7 @@ sudo apt-get upgrade -y
 sudo apt-get install intel-linux-graphics-update-tool -y
 
 sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893 -y
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
 sudo apt-get update -y
 sudo apt-get install dotnet-dev-1.0.4 -y
 
