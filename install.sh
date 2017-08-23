@@ -14,9 +14,12 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 
-sudo add-apt-repository ppa:moka/stable -y
+# sudo add-apt-repository ppa:moka/stable -y
+# sudo apt-get update -y
+# sudo apt-get install moka-icon-theme -y
+
+sudo add-apt-repository ppa:ubuntu-x-swat/updates -y
 sudo apt-get update -y
-sudo apt-get install moka-icon-theme -y
 
 sudo add-apt-repository ppa:numix/ppa -y
 sudo apt-get update -y
@@ -30,8 +33,8 @@ sudo apt-get install paper-gtk-theme -y
 
 sudo apt install ubuntu-restricted-extras libavcodec-extra libdvd-pkg -y
 
-sudo add-apt-repository ppa:paulo-miguel-dias/mesa -y
-sudo apt-get update -y
+# sudo add-apt-repository ppa:paulo-miguel-dias/mesa -y
+# sudo apt-get update -y
 
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 sudo apt-get update -y
@@ -43,14 +46,14 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install intel-linux-graphics-update-tool -y
 
-sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
-sudo apt-get update -y
-sudo apt-get install dotnet-dev-1.0.4 -y
+# sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
+# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+# sudo apt-get update -y
+# sudo apt-get install dotnet-dev-1.0.4 -y
 
-sudo add-apt-repository ppa:caffeine-developers/ppa
-sudo apt-get update -y
-sudo apt-get install caffeine -y
+# sudo add-apt-repository ppa:caffeine-developers/ppa
+# sudo apt-get update -y
+# sudo apt-get install caffeine -y
 
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
