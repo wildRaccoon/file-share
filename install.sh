@@ -1,62 +1,90 @@
-sudo apt-get install curl -y
-sudo apt-get install chromium-browser mc -y
+uname -a
 
-sudo apt-add-repository -y ppa:teejee2008/ppa
-sudo apt-get update -y
-sudo apt-get install ukuu -y
+cd ~/
 
-sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
-sudo apt-get update -y
-sudo apt-get install grub-customizer -y
+sudo apt update -y
+sudo apt install wget -y
 
-sudo apt-add-repository ppa:gnome3-team/gnome3-staging -y
-sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt-get dist-upgrade -y
+wget https://raw.githubusercontent.com/wildRaccoon/file-share/master/update.sh
+wget https://raw.githubusercontent.com/wildRaccoon/file-share/master/.tmux.conf
 
-# sudo add-apt-repository ppa:moka/stable -y
-# sudo apt-get update -y
-# sudo apt-get install moka-icon-theme -y
+chmod +x ./update.sh 
+./update.sh 
 
-sudo add-apt-repository ppa:ubuntu-x-swat/updates -y
-sudo apt-get update -y
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer 
+sudo apt update -y
+sudo apt install grub-customizer
 
-sudo add-apt-repository ppa:numix/ppa -y
-sudo apt-get update -y
-sudo apt-get install numix-gtk-theme numix-icon-theme-circle -y
+#general
+sudo apt install bleachbit mc neofetch screenfetch python3 pypy3 nano tmux htop xclip -y
+sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
 
-sudo add-apt-repository ppa:snwh/pulp -y
-sudo apt-get update -y
-sudo apt-get install paper-icon-theme -y
-sudo apt-get install paper-cursor-theme -y
-sudo apt-get install paper-gtk-theme -y
+#docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt update -y
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose
 
-sudo apt install ubuntu-restricted-extras libavcodec-extra libdvd-pkg -y
+#add user to docker group
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
-# sudo add-apt-repository ppa:paulo-miguel-dias/mesa -y
-# sudo apt-get update -y
 
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-sudo apt-get update -y
-sudo apt-get install gcc-7 g++-7 -y
+#microsoft
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt update -y
+sudo apt-get install code
 
-wget https://download.01.org/gfx/RPM-GPG-GROUP-KEY-ilg
-sudo apt-key add RPM-GPG-GROUP-KEY-ilg -y
-sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt-get install intel-linux-graphics-update-tool -y
+#dotnet
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt update -y
+sudo apt-get install -y dotnet-sdk-3.1
 
-# sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
-# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
-# sudo apt-get update -y
-# sudo apt-get install dotnet-dev-1.0.4 -y
+#skypeforlinux
+echo "deb [arch=amd64] https://repo.skype.com/deb stable main" | sudo tee /etc/apt/sources.list.d/skypeforlinux.list
+curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add - 
+sudo apt update
+sudo apt install skypeforlinux
 
-# sudo add-apt-repository ppa:caffeine-developers/ppa
-# sudo apt-get update -y
-# sudo apt-get install caffeine -y
+#dbeaver
+sudo add-apt-repository ppa:serge-rider/dbeaver-ce
+sudo apt update -y
+sudo apt install dbeaver-ce
 
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt-get update -y
-sudo apt-get install code -y
+#insomnia
+echo "deb https://dl.bintray.com/getinsomnia/Insomnia /"     | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc     | sudo apt-key add -
+sudo apt update -y
+sudo apt-get install insomnia
+
+#google chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt update -y
+sudo apt-get install google-chrome-stable
+
+#golang
+wget https://golang.org/dl/go1.15.2.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.15.2.linux-amd64.tar.gz 
+rm go1.15.2.linux-amd64.tar.gz 
+echo 'export PATH=$PATH:/usr/local/go/bin' > .profile
+
+#remove snap
+sudo snap remove snap-store
+sudo snap remove software-boutique
+sudo snap remove ubuntu-mate-welcome
+snap remove core18
+
+sudo umount (df --output=source | grep snap)
+sudo apt purge snapd
+
+rm -rf ~/snap
+rm -rf /snap
+rm -rf /var/snap
+rm -rf /var/lib/snap
