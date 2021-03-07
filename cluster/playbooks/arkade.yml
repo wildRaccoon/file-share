@@ -1,0 +1,7 @@
+- hosts: rpi
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: install arkade
+      shell: "curl -sLS https://dl.get-arkade.dev | sh"
