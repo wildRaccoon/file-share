@@ -1,0 +1,9 @@
+- hosts: rpi
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: Upgrade systems
+      pacman:
+        update_cache: yes
+        upgrade: yes
